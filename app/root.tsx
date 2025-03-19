@@ -1,6 +1,5 @@
 import {
   isRouteErrorResponse,
-  Link,
   Links,
   Meta,
   Outlet,
@@ -10,6 +9,7 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import { Navbar } from "~/components/layouts/navbar";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -34,11 +34,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <nav>
-          <Link to="/">home</Link>
-          <Link to="/auth/login">login</Link>
-        </nav>
-        {children}
+        <Navbar />
+        <main className="mt-18 m-7">
+          {children}
+        </main>
         <ScrollRestoration />
         <Scripts />
       </body>
