@@ -1,4 +1,5 @@
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
+import { Button } from "~/components/ui/button";
 
 export function Navbar() {
     return (
@@ -7,7 +8,9 @@ export function Navbar() {
                 <div className="flex items-center">
                     <NavLink to="/" className="text-xl font-bold">Home</NavLink>
                 </div>
-                <NavLink to="/auth/login" className="font-bold">login</NavLink>
+                <Button asChild>
+                     <Link to="/auth/login">Login</Link>
+                </Button>
             </div>
         </nav>
     )
