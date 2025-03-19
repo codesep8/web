@@ -43,7 +43,7 @@ export default function LogInPage({ loaderData }: Route.ComponentProps) {
     const { error } = loaderData;
     return (
         <div>
-            {error ? <div className="error">{error}</div> : null}
+            {error ? <div className="text-red-500">{error}</div> : null}
             <form method="POST">
                 <div>
                     <p>Please sign in</p>

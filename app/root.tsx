@@ -1,4 +1,5 @@
 import {
+  data,
   isRouteErrorResponse,
   Links,
   Meta,
@@ -10,6 +11,7 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 import { Navbar } from "~/components/layouts/navbar";
+import { getSession } from "./service/session.server";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -43,6 +45,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </body>
     </html>
   );
+}
+
+export async function loader({ request }: Route.LoaderArgs) {
+  const session = await getSession(request.headers.get("Cookie"))
+
+  if (session.has("userId")) {
+    return {
+      isLoggedIn: true,
+      id: session.get("userId") as string
+    }
+  } else {
+    return {
+      isLoggedIn: false,
+      id: null
+    }
+  }
 }
 
 export default function App() {
