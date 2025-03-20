@@ -19,6 +19,7 @@ export function Navbar() {
                         </Link>
                     </div>
                 </div>
+                <div className="flex items-center space-x-4">
                 {session.isLoggedIn ?
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
@@ -41,6 +42,7 @@ export function Navbar() {
                     </Button>
                 }
                 <MobileLinks/>
+                </div>
             </div>
         </nav>
     )
