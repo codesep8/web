@@ -10,7 +10,7 @@ export function Navbar() {
                     <NavLink to="/" className="text-xl font-bold">Home</NavLink>
                 </div>
                 {session.isLoggedIn ?
-                    <p>{session.id}</p>
+                    <Link to="/auth/logout">{session.id}</Link>
                 :
                     <Button asChild>
                         <Link to="/auth/login">login</Link>
