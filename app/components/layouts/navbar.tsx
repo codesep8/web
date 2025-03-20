@@ -3,6 +3,7 @@ import { Button } from "~/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator } from "../ui/dropdown-menu";
 import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
 import { Separator } from "../ui/separator";
+import { MobileLinks } from "./links"
 
 export function Navbar() {
     const session = useRouteLoaderData("root");
@@ -39,6 +40,7 @@ export function Navbar() {
                         <Link to="/auth/login">login</Link>
                     </Button>
                 }
+                <MobileLinks/>
             </div>
         </nav>
     )
