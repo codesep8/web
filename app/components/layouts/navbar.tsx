@@ -14,8 +14,11 @@ export function Navbar() {
                     <NavLink to="/" className="text-xl font-bold">Home</NavLink>
                     <div className="hidden md:flex ml-6 space-x-4">
                         <Separator orientation="vertical" />
-                        <Link to="/RecenteChanges" className="text-sm font-medium hover:text-primary">
-                            rr
+                        <Link to="/board" className="text-lg font-medium hover:text-primary">
+                            board list
+                        </Link>
+                        <Link to="/RecentChanges" className="text-lg font-medium hover:text-primary">
+                            popular
                         </Link>
                     </div>
                 </div>
@@ -29,7 +32,7 @@ export function Navbar() {
                             </Avatar>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent>
-                            <DropdownMenuLabel>{session.id}</DropdownMenuLabel>
+                            <DropdownMenuLabel>{session.userName}</DropdownMenuLabel>
                             <DropdownMenuSeparator/>
                             <DropdownMenuItem>
                                 <Link to="/auth/logout">logout</Link>

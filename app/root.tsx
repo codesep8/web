@@ -5,12 +5,29 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useNavigation
 } from "react-router";
 
 import type { Route } from "./+types/root";
 import "./app.css";
 import { Navbar } from "~/components/layouts/navbar";
 import { getSession } from "./service/session.server";
+import TopBarProgress from 'react-topbar-progress-indicator'
+import { useSpinDelay } from 'spin-delay'
+
+TopBarProgress.config({
+  barColors: {
+    '0': '#e52207',
+    '0.5': '#ffffff',
+    '1.0': '#0050d8',
+  },
+})
+
+function Progress() {
+  const { state } = useNavigation()
+  const showProgress = useSpinDelay(state !== 'idle')
+  return <>{showProgress && <TopBarProgress />}</>
+}
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -35,7 +52,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+        <Progress />
         <Navbar />
+        <Progress />
         <main className="mt-18 m-7">
           {children}
         </main>
@@ -52,12 +71,14 @@ export async function loader({ request }: Route.LoaderArgs) {
   if (session.has("userId")) {
     return {
       isLoggedIn: true,
-      id: session.get("userId") as string
+      userId: session.get("userId") as string,
+      userName: session.get("userName") as string
     }
   } else {
     return {
       isLoggedIn: false,
-      id: null
+      userId: null,
+      userName: null
     }
   }
 }

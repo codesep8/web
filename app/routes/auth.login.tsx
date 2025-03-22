@@ -32,6 +32,7 @@ export async function action({ request }: Route.ActionArgs) {
         });
     };
     session.set("userId", userId);
+    session.set("userName", "testuser");
     return redirect("/", {
         headers: {
             "Set-Cookie": await commitSession(session),
