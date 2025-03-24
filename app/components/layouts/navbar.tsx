@@ -44,9 +44,6 @@ function MobileLinks() {
     </DrawerHeader>
       <div>
         링크
-      <DrawerClose>
-        <Button variant="outline">닫기</Button>
-      </DrawerClose>
       </div>
   </DrawerContent>
 </Drawer>
