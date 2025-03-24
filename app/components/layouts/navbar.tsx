@@ -1,4 +1,14 @@
 import { NavLink } from "react-router";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "~/components/ui/drawer";
 
 export function Navbar() {
     return (
@@ -9,7 +19,7 @@ export function Navbar() {
                     <Links />
                 </div>
                 <div className="flex items-center space-x-4">
-                    mobile
+                    <MobileLinks />
                 </div>
             </div>
         </nav>
@@ -23,3 +33,23 @@ function Links() {
         </div>
     )
 }
+
+function MobileLinks() {
+    return (
+        <Drawer>
+  <DrawerTrigger>Open</DrawerTrigger>
+  <DrawerContent>
+    <DrawerHeader>
+      <DrawerTitle>Are you absolutely sure?</DrawerTitle>
+      <DrawerDescription>This action cannot be undone.</DrawerDescription>
+    </DrawerHeader>
+    <DrawerFooter>
+      <Button>Submit</Button>
+      <DrawerClose>
+        <Button variant="outline">Cancel</Button>
+      </DrawerClose>
+    </DrawerFooter>
+  </DrawerContent>
+</Drawer>
+)
+};
