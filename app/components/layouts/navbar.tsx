@@ -40,15 +40,14 @@ function MobileLinks() {
   <DrawerTrigger>Open</DrawerTrigger>
   <DrawerContent>
     <DrawerHeader>
-      <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-      <DrawerDescription>This action cannot be undone.</DrawerDescription>
+      <DrawerTitle>메뉴</DrawerTitle>
     </DrawerHeader>
-    <DrawerFooter>
-      <Button>Submit</Button>
+      <div>
+        링크
       <DrawerClose>
-        <Button variant="outline">Cancel</Button>
+        <Button variant="outline">닫기</Button>
       </DrawerClose>
-    </DrawerFooter>
+      </div>
   </DrawerContent>
 </Drawer>
 )
