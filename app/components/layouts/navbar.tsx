@@ -37,7 +37,11 @@ export function Navbar() {
                             <DropdownMenuLabel>{sessionData.isLoggedIn ? sessionData.username : "Guest" }</DropdownMenuLabel>
                             <DropdownMenuSeparator/>
                             <DropdownMenuItem>
-                                <Link to="/auth/logout">logout</Link>
+                                {sessionData.isLoggedIn ?
+                                    <Link to="/auth/logout">로그아웃</Link>
+                                :
+                                    <Link to="/auth/login">로그인</Link>
+                                }
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>

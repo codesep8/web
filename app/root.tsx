@@ -52,10 +52,10 @@ export async function loader({ request }: Route.LoaderArgs) {
     sitename: "게시판엔진"
   };
 
-  const sessionData = session.has("userId") 
+  const sessionData = session.has("userID") 
     ? {
         isLoggedIn: true,
-        userId: session.get("userId") as string,
+        userId: session.get("userID") as string,
         username: session.get("username") as string
       }
     : {

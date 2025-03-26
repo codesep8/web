@@ -5,7 +5,7 @@ import type { Route } from "./+types/auth.login"
 export async function loader({ request }: Route.LoaderArgs) {
     const session = await getSession(request.headers.get("Cookie"));
   
-    if (session.has("userId")) {
+    if (session.has("userID")) {
       return redirect("/");
     }
   
