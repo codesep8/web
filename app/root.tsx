@@ -46,26 +46,28 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export async function loader({ request }: Route.LoaderArgs) {
-  const session = await getSession(request.headers.get("Cookie"))
+  const session = await getSession(request.headers.get("Cookie"));
+  
   const config = {
     sitename: "게시판엔진"
-  }
-  if (session.has("userId")) {
-  const sessionData = {
-    isLoggedIn: true,
-      userId: session.get("userId") as string,
-      userName: session.get("userName") as string
-  }
-  } else {
-    const sessionData = {
-    isLoggedIn: false,
-      userId: null,
-      userName: null
-    }}
+  };
+
+  const sessionData = session.has("userId") 
+    ? {
+        isLoggedIn: true,
+        userId: session.get("userId") as string,
+        userName: session.get("userName") as string
+      }
+    : {
+        isLoggedIn: false,
+        userId: null,
+        userName: null
+      };
+
   return {
     config,
     sessionData
-  }
+  };
 }
 
 export default function App() {
