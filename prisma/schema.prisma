@@ -18,5 +18,14 @@ model config {
   sitename String
   notice String
   footer String
+	description String
   description String
+}
+
+model boards {
+	id Int @id @default(autoincrement())
+	name String
+	owner String
+	description String
+	createdAt @default(now())
 }
