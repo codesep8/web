@@ -45,6 +45,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
+export function loader({ request }: Route.LoaderArgs) {
+  const config = {
+    sitename: "게시판엔진"
+  }
+  const session = {
+    isLoggedIn: false
+  }
+  return {
+    config,
+    session
+  }
+}
+
 export default function App() {
   return <Outlet />;
 }
