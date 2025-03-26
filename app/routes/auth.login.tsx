@@ -22,8 +22,8 @@ export async function loader({ request }: Route.LoaderArgs) {
 export async function action({ request }: Route.ActionArgs) {
     const session = await getSession(request.headers.get("Cookie"));
     const form = await request.formData();
-    const userId = form.get("userId") as string;
-    if (userId !== "hi") {
+    const userID = form.get("userID") as string;
+    if (userID !== "hi") {
         session.flash("error", "userid not exist");
         return redirect("/auth/login", {
             headers: {
@@ -31,7 +31,7 @@ export async function action({ request }: Route.ActionArgs) {
             },
         });
     };
-    session.set("userId", userId);
+    session.set("userID", userID);
     session.set("username", "testuser");
     return redirect("/", {
         headers: {
