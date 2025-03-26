@@ -1,4 +1,4 @@
-import { NavLink, Link } from "react-router";
+import { NavLink, Link, useRouteLoaderData } from "react-router";
 import {
   Drawer,
   DrawerClose,
@@ -17,11 +17,12 @@ const links = [
 ]
 
 export function Navbar() {
+    const { config } = useRouteLoaderData("root");
     return (
         <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur">
             <div className="container mx-auto px-4 flex items-center justify-between h-16">
                 <div className="flex items-center">
-                    <NavLink to="/" className="text-xl font-bold">홈</NavLink>
+                    <NavLink to="/" className="text-xl font-bold">{config.sitename}</NavLink>
                     <Links />
                 </div>
                 <div className="flex items-center space-x-4">
