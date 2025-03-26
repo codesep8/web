@@ -50,7 +50,7 @@ export default function LogInPage({ loaderData }: Route.ComponentProps) {
                     <p>Please sign in</p>
                 </div>
                 <label>
-                    Username: <input type="text" name="userId" />
+                    Username: <input type="text" name="userID" />
                 </label>
                 <label>
                     Password:{" "}
