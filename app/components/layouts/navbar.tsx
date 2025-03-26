@@ -1,14 +1,20 @@
-import { NavLink } from "react-router";
+import { NavLink, Link } from "react-router";
 import {
   Drawer,
   DrawerClose,
   DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
 } from "~/components/ui/drawer";
+import { Button } from "../ui/button";
+import { Menu } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator } from "../ui/dropdown-menu";
+import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
+
+const links = [
+    { to: "/board", label: "게시판" }
+]
 
 export function Navbar() {
     return (
@@ -19,6 +25,21 @@ export function Navbar() {
                     <Links />
                 </div>
                 <div className="flex items-center space-x-4">
+                <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Avatar>
+                                <AvatarImage src="https://github.com/shadcn.png" alt="d" />
+                                <AvatarFallback>.</AvatarFallback>
+                            </Avatar>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent>
+                            <DropdownMenuLabel>dd</DropdownMenuLabel>
+                            <DropdownMenuSeparator/>
+                            <DropdownMenuItem>
+                                <Link to="/auth/logout">logout</Link>
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
                     <MobileLinks />
                 </div>
             </div>
@@ -29,7 +50,9 @@ export function Navbar() {
 function Links() {
     return (
         <div className="hidden md:flex ml-6 space-x-4">
-            <NavLink to="/board" className="text-lg font-medium">게시판</NavLink>
+            {links.map((link) => (
+                <NavLink key={link.to} to={link.to} className="text-lg font-medium">{link.label}</NavLink>
+            ))}
         </div>
     )
 }
@@ -37,15 +60,19 @@ function Links() {
 function MobileLinks() {
     return (
         <Drawer>
-  <DrawerTrigger>Open</DrawerTrigger>
-  <DrawerContent>
-    <DrawerHeader>
-      <DrawerTitle>메뉴</DrawerTitle>
-    </DrawerHeader>
-      <div>
-        링크
-      </div>
-  </DrawerContent>
-</Drawer>
-)
+            <DrawerTrigger asChild>
+                <Button variant="ghost" size="icon" className="dmd:hidden">
+                    <Menu />
+                </Button>
+            </DrawerTrigger>
+            <DrawerContent>
+                <DrawerHeader>
+                    <DrawerTitle>메뉴</DrawerTitle>
+                </DrawerHeader>
+                {links.map((link) => (
+                    <NavLink key={link.to} to={link.to} className="text-lg font-medium">{link.label}</NavLink>
+                ))}
+            </DrawerContent>
+        </Drawer>
+    )
 };
