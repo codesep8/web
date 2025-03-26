@@ -6,7 +6,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
-
+import { getSession } from "~/service/session.server";
 import type { Route } from "./+types/root";
 import "./app.css";
 import { Navbar } from "~/components/layouts/navbar";
@@ -45,16 +45,26 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function loader({ request }: Route.LoaderArgs) {
+export async function loader({ request }: Route.LoaderArgs) {
+  const session = await getSession(request.headers.get("Cookie"))
   const config = {
     sitename: "게시판엔진"
   }
-  const session = {
-    isLoggedIn: false
+  if (session.has("userId")) {
+  const sessionData = {
+    isLoggedIn: true,
+      userId: session.get("userId") as string,
+      userName: session.get("userName") as string
   }
+  } else {
+    const sessionData = {
+    isLoggedIn: false,
+      userId: null,
+      userName: null
+    }}
   return {
     config,
-    session
+    sessionData
   }
 }
 
