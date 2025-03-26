@@ -17,7 +17,7 @@ const links = [
 ]
 
 export function Navbar() {
-    const { config } = useRouteLoaderData("root");
+    const { config, session } = useRouteLoaderData("root");
     return (
         <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur">
             <div className="container mx-auto px-4 flex items-center justify-between h-16">
@@ -34,7 +34,7 @@ export function Navbar() {
                             </Avatar>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent>
-                            <DropdownMenuLabel>dd</DropdownMenuLabel>
+                            <DropdownMenuLabel>{session.isLoggedIn ? session.username : null }</DropdownMenuLabel>
                             <DropdownMenuSeparator/>
                             <DropdownMenuItem>
                                 <Link to="/auth/logout">logout</Link>
