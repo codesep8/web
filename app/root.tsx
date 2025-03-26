@@ -56,12 +56,12 @@ export async function loader({ request }: Route.LoaderArgs) {
     ? {
         isLoggedIn: true,
         userId: session.get("userId") as string,
-        userName: session.get("username") as string
+        username: session.get("username") as string
       }
     : {
         isLoggedIn: false,
         userId: null,
-        userName: null
+        username: null
       };
 
   return {
